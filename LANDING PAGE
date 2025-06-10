@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Creative Animated Landing Page</title>
+    <meta name="description" content="A creative animated landing page with a starry background, orbiting planet, and smooth animations.">
+    <meta name="keywords" content="landing page, animation, creative design, HTML, CSS, JavaScript">
+    <meta name="author" content="Your Name">
+    <link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAC0lEQVR42mP8//8/AwAI/wM+9QAAAABJRU5ErkJggg==">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            overflow: hidden;
+            font-family: 'Montserrat', sans-serif;
+            color: #fff;
+        }
+        .stars {
+            position: fixed;
+            width: 100vw;
+            height: 100vh;
+            top: 0; left: 0;
+            z-index: 0;
+            pointer-events: none;
+        }
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            opacity: 0.8;
+            animation: twinkle 2s infinite alternate;
+        }
+        @keyframes twinkle {
+            to { opacity: 0.3; }
+        }
+        .container {
+            position: relative;
+            z-index: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            color: #ffecd2; 
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 20px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+            margin: 0 auto;
+            max-width: 1200px;
+            width: 90%;
+            box-sizing: border-box;
+            overflow: hidden;
+            animation: fadeIn 1.2s ease-in-out;
+        }
+        .headline {
+            font-size: 3rem;
+            letter-spacing: 2px;
+            background: linear-gradient(90deg, #ffecd2 0%, #fcb69f 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: slideIn 1.2s cubic-bezier(.68,-0.55,.27,1.55);
+        }
+        @keyframes slideIn {
+            from { transform: translateY(-80px) scale(0.8); opacity: 0; }
+            to { transform: translateY(0) scale(1); opacity: 1; }
+        }
+        .subtext {
+            margin-top: 1rem;
+            font-size: 1.3rem;
+            color: #e0e0e0;
+            opacity: 0;
+            animation: fadeIn 1.2s 1s forwards;
+        }
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+        .cta-btn {
+            margin-top: 2.5rem;
+            padding: 1rem 2.5rem;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #fff;
+            background: linear-gradient(90deg, #ff512f 0%, #dd2476 100%);
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 8px 24px rgba(220, 36, 118, 0.2);
+            transition: transform 0.2s, box-shadow 0.2s;
+            opacity: 0;
+            animation: fadeIn 1.2s 2s forwards;
+        }
+        .cta-btn:hover {
+            transform: scale(1.07);
+            box-shadow: 0 12px 32px rgba(220, 36, 118, 0.3);
+        }
+        .orbit {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 320px;
+            height: 320px;
+            margin-left: -160px;
+            margin-top: -160px;
+            pointer-events: none;
+            z-index: 0;
+            margin-top: 90px;
+        }
+        .planet {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, #fcb69f 60%, #ff512f 100%);
+            box-shadow: 0 0 40px 10px #ffecd2;
+            animation: orbit 8s linear infinite;
+            top: 0;
+            left: 50%;
+            margin-left: -30px;
+        }
+        @keyframes orbit {
+            0% { transform: rotate(0deg) translateY(-160px) rotate(0deg);}
+            100% { transform: rotate(360deg) translateY(-160px) rotate(-360deg);}
+        }
+        @media (max-width: 600px) {
+            .headline { font-size: 2rem; }
+            .orbit { width: 180px; height: 180px; margin-left: -90px; margin-top: -90px;}
+            .planet { width: 32px; height: 32px; margin-left: -16px;}
+        }
+        .navbar {
+            position: relative;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2;
+            background: transparent;
+        }
+        .nav-logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #ffecd2;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+        .nav-links li {
+            position: relative;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 1rem;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover {
+            color: #ff512f;
+        }
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 2.5rem;
+            left: 0;
+            background: #2a5298;
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(30,60,114,0.15);
+            padding: 0.5rem 0;
+            min-width: 140px;
+            z-index: 10;
+        }
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+        /* Superhero Shadows Animation */
+        .superhero-shadows {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 1;
+        }
+        .superhero-shadow {
+            position: absolute;
+            width: 48px;
+            height: 24px;
+            opacity: 0.18;
+            background: url('data:image/svg+xml;utf8,<svg width="48" height="24" viewBox="0 0 48 24" fill="none" xmlns="http://www.w3.org/2000/svg"><ellipse cx="24" cy="12" rx="20" ry="8" fill="black" fill-opacity="0.7"/><rect x="20" y="4" width="8" height="12" rx="4" fill="black" fill-opacity="0.7"/><ellipse cx="24" cy="6" rx="4" ry="2" fill="black" fill-opacity="0.7"/></svg>') no-repeat center/contain;
+            filter: blur(1px);
+            animation: fly-superhero 12s linear infinite;
+            animation-delay: calc(var(--i) * 2.5s);
+            top: calc(10% + 15% * var(--i));
+            left: -60px;
+        }
+        @keyframes fly-superhero {
+            0% {
+                transform: scale(0.7) rotate(-8deg);
+                opacity: 0.18;
+                left: -60px;
+            }
+            10% {
+                opacity: 0.28;
+            }
+            50% {
+                opacity: 0.22;
+            }
+            90% {
+                opacity: 0.18;
+            }
+            100% {
+                left: 110vw;
+                transform: scale(0.7) rotate(8deg);
+                opacity: 0.18;
+            }
+        }
+        /* Superman Intro Overlay */
+        #superman-intro {
+            position: fixed;
+            z-index: 9999;
+            inset: 0;
+            background: rgba(30, 60, 114, 0.98);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.7s;
+        }
+        #superman-intro.hide {
+            opacity: 0;
+            pointer-events: none;
+        }
+        .superman-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            animation: fly-in 1.2s cubic-bezier(.68,-0.55,.27,1.55);
+        }
+        @keyframes fly-in {
+            0% { transform: translateY(-200px) scale(0.7) rotate(-10deg); opacity: 0; }
+            70% { transform: translateY(20px) scale(1.05) rotate(5deg); opacity: 1; }
+            100% { transform: translateY(0) scale(1) rotate(0deg); opacity: 1; }
+        }
+        .superman svg {
+            filter: drop-shadow(0 8px 32px #0008);
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .superman svg:hover {
+            transform: scale(1.05) rotate(-2deg);
+        }
+        /* Modal Styles */
+        #message-modal {
+            position: fixed;
+            z-index: 10000;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(30, 60, 114, 0.35);
+            backdrop-filter: blur(6px);
+            animation: modalFadeIn 0.5s;
+        }
+        @keyframes modalFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .modal-hidden {
+            display: none !important;
+        }
+        .modal-content {
+            background: #fff;
+            color: #2a5298;
+            padding: 2rem 2.5rem;
+            border-radius: 18px;
+            box-shadow: 0 8px 32px rgba(30,60,114,0.18);
+            text-align: center;
+            font-size: 1.3rem;
+            font-family: 'Montserrat', sans-serif;
+            position: relative;
+            animation: modalPop 0.5s cubic-bezier(.68,-0.55,.27,1.55);
+        }
+        @keyframes modalPop {
+            0% { transform: scale(0.7) translateY(60px); opacity: 0; }
+            80% { transform: scale(1.05) translateY(-8px); opacity: 1; }
+            100% { transform: scale(1) translateY(0); opacity: 1; }
+        }
+        .modal-close {
+            position: absolute;
+            top: 10px;
+            right: 18px;
+            font-size: 2rem;
+            color: #2a5298;
+            cursor: pointer;
+            font-weight: bold;
+            transition: color 0.2s;
+        }
+        .modal-close:hover {
+            color: #e53935;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-logo">Creativity</div>
+        <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            <li class="dropdown">
+                <a href="#">Features</a>
+                <ul class="dropdown-menu">
+                    <li><a href="#">Animations</a></li>
+                    <li><a href="#">Design</a></li>
+                    <li><a href="#">Performance</a></li>
+                </ul>
+            </li>
+            <li><a href="#">Gallery</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Pricing</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+    <div class="stars"></div>
+    <div class="orbit">
+        <div class="planet"></div>
+    </div>
+    <div class="superhero-shadows">
+        <div class="superhero-shadow" style="--i:0;"></div>
+        <div class="superhero-shadow" style="--i:1;"></div>
+        <div class="superhero-shadow" style="--i:2;"></div>
+        <div class="superhero-shadow" style="--i:3;"></div>
+        <div class="superhero-shadow" style="--i:4;"></div>
+    </div>
+    <div class="container">
+        <div class="headline">Welcome to SPARKSCULPT </div>
+        <div class="headline animate__animated animate__fadeInDown">Where Imagination Meets Innovation</div>
+        <div class="subtext">Experience a landing page inspired by imagination, color, and motion.<br>Let your ideas orbit the extraordinary.</div>
+        <div class="subtext animate__animated animate__fadeInUp">Join us in a journey of creativity and design.</div>
+        <div class="cta-btn">Get Started</div>
+    </div>
+    <div id="superman-intro">
+        <div class="superman-container">
+            <div class="superman">
+                <svg width="120" height="120" viewBox="0 0 120 120">
+                    <!-- Cape -->
+                    <path d="M60 70 Q80 90 60 110 Q40 90 60 70" fill="#e53935"/>
+                    <!-- Body -->
+                    <ellipse cx="60" cy="70" rx="18" ry="28" fill="#1976d2"/>
+                    <!-- Head -->
+                    <ellipse cx="60" cy="45" rx="12" ry="12" fill="#ffe0b2"/>
+                    <!-- Left Arm -->
+                    <rect x="40" y="60" width="8" height="28" rx="4" fill="#ffe0b2" transform="rotate(-20 44 74)"/>
+                    <!-- Right Arm -->
+                    <rect x="72" y="60" width="8" height="28" rx="4" fill="#ffe0b2" transform="rotate(20 76 74)"/>
+                    <!-- Board -->
+                    <rect x="25" y="85" width="70" height="30" rx="8" fill="#fff" stroke="#333" stroke-width="2"/>
+                    <rect x="35" y="90" width="50" height="22" rx="6" fill="#fff" stroke="#333" stroke-width="2"/>
+                    <text x="60" y="104" text-anchor="middle" font-size="10" fill="#333" font-family="Montserrat, Arial, sans-serif" font-weight="bold">READY!</text>
+                    <text x="60" y="114" text-anchor="middle" font-size="8" fill="#1976d2" font-family="Montserrat, Arial, sans-serif">CLICK here</text>
+                </svg>
+            </div>
+        </div>
+    </div>
+    <!-- Message Modal -->
+    <div id="message-modal" class="modal modal-hidden">
+        <div class="modal-content">
+            <span class="modal-close" id="modalClose">&times;</span>
+            <div class="modal-message">
+                MORE INTERESTING THINGS ARE ON THE WAY,<br>SORRY FOR THE INCONVENIENCE
+            </div>
+        </div>
+    </div>
+    <script>
+        // Star background
+        document.addEventListener('DOMContentLoaded', () => {
+            const starsContainer = document.querySelector('.stars');
+            for (let i = 0; i < 100; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.top = Math.random() * 100 + 'vh';
+                star.style.left = Math.random() * 100 + 'vw';
+                starsContainer.appendChild(star);
+            }
+        });
+        // Planet hover effect
+        const planet = document.querySelector('.planet');
+        planet.addEventListener('mouseover', () => {
+            planet.style.boxShadow = '0 0 60px 20px #ff512f';
+        });
+        planet.addEventListener('mouseout', () => {
+            planet.style.boxShadow = '0 0 40px 10px #ffecd2';
+        });
+        // Superman intro overlay
+        document.addEventListener('DOMContentLoaded', function() {
+            const intro = document.getElementById('superman-intro');
+            intro.addEventListener('click', function() {
+                intro.classList.add('hide');
+                setTimeout(() => intro.style.display = 'none', 700);
+            });
+        });
+        // Superhero shadows animation
+        const shadows = document.querySelectorAll('.superhero-shadow');
+        shadows.forEach((shadow, index) => {
+            shadow.style.setProperty('--i', index);
+            shadow.style.animationDelay = `${index * 2.5}s`;
+        });
+        // Fade in Superman intro
+        setTimeout(() => {
+            const intro = document.getElementById('superman-intro');
+            intro.classList.add('hide');
+        }, 3000);
+        // Show message modal on Get Started button click
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctaBtn = document.querySelector('.cta-btn');
+            const modal = document.getElementById('message-modal');
+            const closeBtn = document.getElementById('modalClose');
+            if (ctaBtn && modal && closeBtn) {
+                ctaBtn.addEventListener('click', function() {
+                    modal.classList.remove('modal-hidden');
+                });
+                closeBtn.addEventListener('click', function() {
+                    modal.classList.add('modal-hidden');
+                });
+                // Optional: close modal on background click
+                modal.addEventListener('click', function(e) {
+                    if (e.target === modal) modal.classList.add('modal-hidden');
+                });
+            }
+        });
+    </script>
+</body>
+</html>
