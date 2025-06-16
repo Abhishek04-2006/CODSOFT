@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abhishek Kumar Tiwari's Portfolio</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="header-flex">
+            <div>
+                <h1 style="text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);">Abhishek Kumar Tiwari</h1>
+                <p><a href="mailto:tiwarivineeta193@gmail.com"><img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Gmail_Icon.png" alt="Gmail" style="width:20px; height:20px; vertical-align:middle;"> tiwarivineeta193@gmail.com</a></p>
+                <p><a href="tel:+919354964220"><img src="https://upload.wikimedia.org/wikipedia/commons/6/6c/Phone_icon.png" alt="Phone" style="width:20px; height:20px; vertical-align:middle;"> +91 9354964220</a></p>
+                <p><a href="https://www.linkedin.com/in/abhishek-kumar-tiwari-b12a75312?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"><img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" alt="LinkedIn" style="width:20px; height:20px; vertical-align:middle;"> Abhishek Kumar Tiwari</a></p>
+            </div>
+            <div class="profile-photo">
+                <img src="me.jpg" alt="Abhishek Kumar Tiwari">
+            </div>
+        </div>
+    </header>
+    <hr style="border: 1px solid black;">
+
+    <div class="container">
+        <div class="section">
+            <h2>Education</h2>
+            <ul>
+                <li>SSLC:Jesus And Mary Convent School- 85.3% (2021-2022)</li>
+                <li>HSC: Jesus And Mary Convent School - 59.4% (2023-2024)</li>
+                <li>BCA Bachelor of Computer Applications, GL BAJAJ INSTITUTE OF MANAGEMENT - CGPA  (Upto 1st Sem, 2024-present)</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Technical Skills</h2>
+            <ul>
+                <li>JAVA</li>
+                <li>HTML/CSS</li>
+                <li>C Programming</li>
+                <li>Git & GitHub</li>
+                <li>Front end development</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Experience</h2>
+            <p><strong>CODSOFT Intern</strong> - 4 Weeks (WORK FROM HOME)</p>
+            <ul>
+                <li>Developed a Calculator, Number guessing Game, Tic-Tac-Toe game</li>
+                <li>Working on different ideas currently</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Projects</h2>
+            <ul>
+                <li><strong>Music Player - MUSIFYIT</strong>: Developed a responsive and user-friendly website for a seamless music and entertainment using HTML, CSS, and JavaScript. (Technologies Used: HTML, CSS, JavaScript, Git)</li>
+                <li><strong>Simple Calculator</strong>: Developed a simple calculator program in C++ that performs basic arithmetic operations. (Technologies Used: C++, Git) 
+                <li><strong>Number Guessing Game</strong>: Developed a number guessing program in C++ for the interaction of user beinng more interactive (Technologies Used:C++, Git)
+                <li><strong>SPARKSCUPLT</strong>: Developed a landing page where IMAGINATION meets INNOVATION. (Technologies Used:- HTML,CSS, and JavaScript)
+            </ul>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <span>&copy; 2024 Abhishek Kumar Tiwari. All rights reserved.</span>
+            <span>
+                <a href="mailto:tiwarivineeta193@gmail.com" title="Email"><img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Gmail_Icon.png" alt="Gmail" style="width:18px;vertical-align:middle;"></a>
+                <a href="https://www.linkedin.com/in/abhishek-kumar-tiwari-b12a75312?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" title="LinkedIn"><img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" alt="LinkedIn" style="width:18px;vertical-align:middle;"></a>
+            </span>
+        </div>
+    </footer>
+
+    <style>
+        body {
+            background: #010a13d0;
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #1a2233;
+            animation: bodyFadeIn 1.2s;
+        }
+
+        @keyframes bodyFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        header, .container {
+            padding: 24px;
+            background: #fff;
+            border-radius: 14px;
+            margin: 24px auto;
+            max-width: 900px;
+            box-shadow: 0 4px 24px rgba(26,34,51,0.07);
+            border: 1.5px solid #e5e5e5;
+            opacity: 0;
+            transform: translateY(-30px);
+            animation: fadeSlideIn 1s 0.3s forwards;
+        }
+
+        @keyframes fadeSlideIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section {
+            margin-bottom: 32px;
+            opacity: 0;
+            transform: translateY(40px);
+            animation: fadeSectionIn 0.8s forwards;
+            animation-delay: 0.7s;
+        }
+
+        .section:nth-child(2) { animation-delay: 0.9s; }
+        .section:nth-child(3) { animation-delay: 1.1s; }
+        .section:nth-child(4) { animation-delay: 1.3s; }
+
+        @keyframes fadeSectionIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1, h2 {
+            text-align: center;
+            color: #1a2233;
+            letter-spacing: 1px;
+            position: relative;
+            margin-bottom: 0.7em;
+        }
+
+        h1::after, h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, #eab308 60%, #fff0 100%);
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: -10px;
+            border-radius: 2px;
+            opacity: 0.8;
+        }
+
+        a {
+            color: #1d4ed8;
+            text-decoration: none;
+            transition: color 0.2s;
+            font-weight: 500;
+        }
+
+        a:hover {
+            color: #eab308;
+            text-decoration: underline;
+        }
+
+        .header-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .profile-photo {
+            min-width: 120px;
+            min-height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f1f5f9;
+            border-radius: 16px;
+            padding: 10px;
+            box-shadow: 0 4px 24px rgba(26,34,51,0.10);
+            border: 2.5px solid #eab308;
+            transition: box-shadow 0.3s, border-color 0.3s;
+        }
+
+        .profile-photo img {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 3px solid #eab308;
+            background: #fff;
+            box-shadow: 0 2px 12px rgba(26,34,51,0.10);
+            transition: transform 0.25s, box-shadow 0.25s;
+        }
+
+        .profile-photo:hover {
+            box-shadow: 0 8px 32px rgba(26,34,51,0.18);
+            border-color: #1d4ed8;
+        }
+
+        .profile-photo img:hover {
+            transform: scale(1.06) rotate(-2deg);
+            box-shadow: 0 8px 32px rgba(26,34,51,0.18);
+        }
+
+        ul {
+            padding-left: 1.2em;
+        }
+
+        li {
+            margin-bottom: 0.5em;
+        }
+
+        hr {
+            border: none;
+            border-top: 2px solid #eab308;
+            margin: 24px auto;
+            max-width: 900px;
+        }
+
+        footer {
+            background: #1a2233;
+            color: #fff;
+            padding: 18px 0 10px 0;
+            text-align: center;
+            border-radius: 0 0 14px 14px;
+            margin: 0 auto 24px auto;
+            max-width: 900px;
+            font-size: 1rem;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+            border-top: 2px solid #eab308;
+            opacity: 0;
+            animation: fadeFooterIn 1s 1.5s forwards;
+        }
+
+        @keyframes fadeFooterIn {
+            to { opacity: 1; }
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 900px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .footer-content span {
+            display: inline-block;
+        }
+
+        .footer-content a {
+            display: inline-block;
+            margin-left: 10px;
+        }
+
+        .footer-content img {
+            filter: grayscale(30%);
+            transition: filter 0.2s;
+        }
+
+        .footer-content img:hover {
+            filter: grayscale(0%);
+        }
+
+        @media (max-width: 700px) {
+            .header-flex {
+                flex-direction: column;
+                align-items: center;
+            }
+            .profile-photo {
+                margin-top: 20px;
+            }
+            .footer-content {
+                flex-direction: column;
+                gap: 8px;
+            }
+            header, .container, footer {
+                margin: 16px;
+            }
+        }
+    </style>
+</body>
+</html>
