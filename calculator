@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Basic Calculator</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(120deg, #f7971e 0%, #ffd200 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+        .calculator {
+            background: #222;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            width: 320px;
+            position: relative; /* Added for positioning floating elements */
+            overflow: hidden; /* Hide overflow for floating elements */
+        }
+        .display {
+            background: #111;
+            color: #fff;
+            font-size: 2em;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            text-align: right;
+            min-height: 40px;
+            word-break: break-all;
+        }
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+        .btn {
+            padding: 20px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 5px;
+            background: #333;
+            color: #fff;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .btn.operator {
+            background: #ff9500;
+            color: #fff;
+        }
+        .btn.equal {
+            background: #28a745;
+            color: #fff;
+            grid-column: span 2;
+        }
+        .btn.clear {
+            background: #dc3545;
+            color: #fff;
+        }
+
+        /* Fade-in animation for a container */
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(20px);}
+          to { opacity: 1; transform: translateY(0);}
+        }
+
+        .animated-container {
+          animation: fadeIn 0.8s ease;
+        }
+
+        /* Button hover animation */
+        .animated-button {
+          transition: background 0.3s, transform 0.2s;
+        }
+
+        .animated-button:hover {
+          background: #0078d4;
+          color: #fff;
+          transform: scale(1.05);
+        }
+
+        /* Floating background styles */
+        .floating-bg {
+          position: fixed;
+          top: 0; left: 0; width: 100vw; height: 100vh;
+          pointer-events: none; /* So clicks pass through */
+          z-index: 0; /* Behind calculator */
+          overflow: hidden;
+        }
+
+        .float-item {
+          position: absolute;
+          top: 100vh;
+          font-size: 3rem;
+          opacity:1;
+          color: #000000;
+          animation: floatUp 5s linear infinite;
+          user-select: none;
+        }
+
+        @keyframes floatUp {
+          0% {
+            top: 100vh;
+            opacity: 0.3;
+            transform: translateY(0) scale(1) rotate(0deg);
+          }
+          50% {
+            opacity: 0.6;
+            transform: translateY(-50vh) scale(1.2) rotate(20deg);
+          }
+          100% {
+            top: -10vh;
+            opacity: 0.3;
+            transform: translateY(-100vh) scale(1) rotate(-20deg);
+          }
+        }
+
+        /* Imaginative animated background */
+        .imagination-bg {
+          position: fixed;
+          top: 0; left: 0; width: 100vw; height: 100vh;
+          pointer-events: none;
+          z-index: 0;
+          overflow: hidden;
+          mix-blend-mode: lighten;
+        }
+
+        .imagination-item {
+          position: absolute;
+          font-size: 2.5rem;
+          opacity: 0.6;
+          filter: blur(1px) drop-shadow(0 0 10px currentColor);
+          font-family: 'Comic Sans MS', 'Comic Sans', cursive;
+          font-weight: bold;
+          user-select: none;
+          animation-name: imaginationFloat;
+          animation-timing-function: linear;
+          animation-iteration-count: infinite;
+        }
+
+        @keyframes imaginationFloat {
+          0% {
+            opacity: 0.4;
+            transform: translateY(0) scale(1) rotate(0deg);
+            filter: blur(2px) drop-shadow(0 0 10px currentColor);
+          }
+          30% {
+            opacity: 0.8;
+            transform: translateY(-30vh) scale(1.3) rotate(15deg);
+            filter: blur(0.5px) drop-shadow(0 0 20px currentColor);
+          }
+          70% {
+            opacity: 0.8;
+            transform: translateY(-70vh) scale(1.1) rotate(-10deg);
+            filter: blur(0.5px) drop-shadow(0 0 20px currentColor);
+          }
+          100% {
+            opacity: 0.4;
+            transform: translateY(-100vh) scale(1) rotate(-20deg);
+            filter: blur(2px) drop-shadow(0 0 10px currentColor);
+          }
+        }
+
+        /* Sparkle SVG style */
+        .sparkle {
+          position: absolute;
+          width: 32px;
+          height: 32px;
+          opacity: 0.5;
+          animation: sparkleFloat 8s linear infinite;
+        }
+
+        @keyframes sparkleFloat {
+          0% { top: 100vh; opacity: 0.5; }
+          100% { top: -10vh; opacity: 0.2; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Place this before your calculator container -->
+    <div class="floating-bg">
+      <span class="float-item" style="left:10%; animation-delay: 0s;">+</span>
+        <span class="float-item" style="left:20%; animation-delay: 1.5s;">3</span>
+        <span class="float-item" style="left:40%; animation-delay: 2.5s;">-</span>
+        <span class="float-item" style="left:60%; animation-delay: 0.5s;">2</span>
+        <span class="float-item" style="left:15%; animation-delay: 3s;">×</span>
+        <span class="float-item" style="left:25%; animation-delay: 1s;">4</span>
+        <span class="float-item" style="left:35%; animation-delay: 2s;">6</span>
+        <span class="float-item" style="left:45%; animation-delay: 0.5s;">8</span>
+        <span class="float-item" style="left:55%; animation-delay: 3s;">9</span>
+        <span class="float-item" style="left:65%; animation-delay: 1.5s;">1</span>
+        <span class="float-item" style="left:75%; animation-delay: 2.5s;">0</span>
+      <span class="float-item" style="left:30%; animation-delay: 2s;">7</span>
+      <span class="float-item" style="left:50%; animation-delay: 1s;">÷</span>
+      <span class="float-item" style="left:70%; animation-delay: 3s;">5</span>
+      <span class="float-item" style="left:85%; animation-delay: 0.5s;">×</span>
+        <span class="float-item" style="left:90%; animation-delay: 2s;">+</span>
+        <span class="float-item" style="left:80%; animation-delay: 1.5s;">-</span>
+        <span class="float-item" style="left:95%; animation-delay: 3s;">=</span>
+        <span class="float-item" style="left:100%; animation-delay: 0.5s;">/</span>
+        <span class="float-item" style="left:110%; animation-delay: 2.5s;">.</span>
+        <span class="float-item" style="left:120%; animation-delay: 1s;">C</span>
+        <span class="float-item" style="left:130%; animation-delay: 3s;">&larr;</span>
+        <span class="float-item" style="left:140%; animation-delay: 0.5s;">=</span>
+      <!-- Add more as desired -->
+    </div>
+    <!-- Imaginative animated background -->
+    <div class="imagination-bg" id="imagination-bg"></div>
+    <div class="calculator animated-container">
+        <div class="display" id="display">0</div>
+        <div class="buttons">
+            <button class="btn clear animated-button" id="clear">C</button>
+            <button class="btn animated-button" id="backspace">&larr;</button>
+            <button class="btn operator animated-button" data-op="/">&#247;</button>
+            <button class="btn operator animated-button" data-op="*">&times;</button>
+            <button class="btn animated-button" data-num="7">7</button>
+            <button class="btn animated-button" data-num="8">8</button>
+            <button class="btn animated-button" data-num="9">9</button>
+            <button class="btn operator animated-button" data-op="-">-</button>
+            <button class="btn animated-button" data-num="4">4</button>
+            <button class="btn animated-button" data-num="5">5</button>
+            <button class="btn animated-button" data-num="6">6</button>
+            <button class="btn operator animated-button" data-op="+">+</button>
+            <button class="btn animated-button" data-num="1">1</button>
+            <button class="btn animated-button" data-num="2">2</button>
+            <button class="btn animated-button" data-num="3">3</button>
+            <button class="btn equal animated-button" id="equal">=</button>
+            <button class="btn animated-button" data-num="0" style="grid-column: span 2;">0</button>
+            <button class="btn animated-button" data-num=".">.</button>
+        </div>
+    <script>
+        const display = document.getElementById('display');
+        const buttons = document.querySelectorAll('.btn');
+        let currentInput = '';
+        let resultShown = false;
+
+        function updateDisplay(value) {
+            display.textContent = value || '0';
+        }
+
+        function isOperator(char) {
+            return ['+', '-', '*', '/'].includes(char);
+        }
+
+        buttons.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const num = this.getAttribute('data-num');
+                const op = this.getAttribute('data-op');
+                if (num !== null) {
+                    if (resultShown) {
+                        currentInput = '';
+                        resultShown = false;
+                    }
+                    // Prevent multiple decimals in a number
+                    if (num === '.') {
+                        let parts = currentInput.split(/[\+\-\*\/]/);
+                        let lastNum = parts[parts.length - 1];
+                        if (lastNum.includes('.')) return;
+                    }
+                    currentInput += num;
+                    updateDisplay(currentInput);
+                } else if (op !== null) {
+                    if (currentInput === '' && op === '-') {
+                        currentInput = '-';
+                        updateDisplay(currentInput);
+                        return;
+                    }
+                    if (currentInput === '' || isOperator(currentInput.slice(-1))) {
+                        return;
+                    }
+                    currentInput += op;
+                    updateDisplay(currentInput);
+                } else if (this.id === 'clear') {
+                    currentInput = '';
+                    updateDisplay(currentInput);
+                } else if (this.id === 'backspace') {
+                    currentInput = currentInput.slice(0, -1);
+                    updateDisplay(currentInput);
+                } else if (this.id === 'equal') {
+                    if (currentInput === '' || isOperator(currentInput.slice(-1))) return;
+                    try {
+                        // Evaluate using Function constructor for safety
+                        let result = Function('"use strict";return (' + currentInput + ')')();
+                        if (result === Infinity || isNaN(result)) {
+                            updateDisplay('Error');
+                            currentInput = '';
+                        } else {
+                            updateDisplay(result);
+                            currentInput = result.toString();
+                            resultShown = true;
+                        }
+                    } catch (e) {
+                        updateDisplay('Error');
+                        currentInput = '';
+                    }
+                }
+            });
+        });
+
+        const imaginationBg = document.getElementById('imagination-bg');
+        const symbols = ['+', '-', '×', '÷', '7', '5', '9', '3', '8', '4'];
+        const colors = [
+          '#ff6ec4', '#36d1c4', '#f7971e', '#43e97b', '#38f9d7', '#ff5858', '#ffd200', '#8fd3f4'
+        ];
+
+        function randomBetween(min, max) {
+          return Math.random() * (max - min) + min;
+        }
+
+        function createFloatingItem() {
+          const span = document.createElement('span');
+          span.className = 'imagination-item';
+          span.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+          span.style.left = `${randomBetween(5, 90)}vw`;
+          span.style.top = '100vh';
+          span.style.color = colors[Math.floor(Math.random() * colors.length)];
+          span.style.fontSize = `${randomBetween(2, 4)}rem`;
+          span.style.animationDuration = `${randomBetween(8, 16)}s`;
+          span.style.animationDelay = `${randomBetween(0, 8)}s`;
+          imaginationBg.appendChild(span);
+
+          // Remove after animation to avoid DOM bloat
+          setTimeout(() => imaginationBg.removeChild(span), 17000);
+        }
+
+        // Add sparkles
+        function createSparkle() {
+          const sparkle = document.createElement('div');
+          sparkle.className = 'sparkle';
+          sparkle.style.left = `${randomBetween(0, 95)}vw`;
+          sparkle.style.top = '100vh';
+          sparkle.style.animationDuration = `${randomBetween(6, 12)}s`;
+          sparkle.innerHTML = `
+            <svg viewBox="0 0 32 32" fill="none">
+              <path d="M16 2 L20 16 L16 30 L12 16 Z" fill="#fff" opacity="0.7"/>
+              <circle cx="16" cy="16" r="6" fill="#fff" opacity="0.3"/>
+            </svg>
+          `;
+          imaginationBg.appendChild(sparkle);
+          setTimeout(() => imaginationBg.removeChild(sparkle), 13000);
+        }
+
+        // Generate floating items and sparkles at intervals
+        setInterval(createFloatingItem, 1200);
+        setInterval(createSparkle, 2000);
+
+        // Optionally, create a few at start
+        for (let i = 0; i < 6; i++) createFloatingItem();
+        for (let i = 0; i < 3; i++) createSparkle();
+    </script>
+</body>
+</html>
